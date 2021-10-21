@@ -1,0 +1,2 @@
+# senierProject
+Recognizing the formula.
