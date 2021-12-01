@@ -1,0 +1,42 @@
+body {
+    background-color: #ECECEC;
+	background-position: 10% 100px;
+    background-size: cover;        
+    height: 100vh;
+    padding:20;
+    margin:40px;
+}
+
+.img_holder img{
+    max-width: 100%; max-height: 100%;
+}
+
+#loading {
+    background: url('../static/loading.gif') no-repeat center center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 9999999;
+}
+
+.btn-file {
+position: relative;
+overflow: hidden;
+}
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
