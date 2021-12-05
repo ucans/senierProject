@@ -35,5 +35,5 @@ def send_file(filename):
 
 if __name__ == '__main__':
     # 0.0.0.0 외부 접속 허용
-    app.run(host = '0.0.0.0', port = 80, debug=True)
+    app.run(host = '0.0.0.0', port = 5000, debug=True)
 
