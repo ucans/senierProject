@@ -1,3 +1,4 @@
+import logging
 import os
 from flask import Flask, render_template, request
 from flask import send_from_directory
@@ -22,7 +23,8 @@ def upload_file():
         return render_template('index.html')
     else:
         file = request.files['image']
-        full_name = os.path.join(UPLOAD_FOLDER, file.filename)
+        print('The dir path', dir_path)
+        full_name = os.path.join(dir_path, UPLOAD_FOLDER, file.filename)
         file.save(full_name)
 
     return render_template('predict.html', image_file_name=file.filename)
@@ -35,5 +37,4 @@ def send_file(filename):
 
 if __name__ == '__main__':
     # 0.0.0.0 외부 접속 허용
-    app.run(host = '0.0.0.0', port = 5000, debug=True)
-
+    app.run(host = "0.0.0.0", port = 5000, debug=True)
