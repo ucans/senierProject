@@ -153,8 +153,11 @@ def main(parser):
 class LInference():
     def __init__(self):
         dir_path = os.path.dirname(os.path.realpath(__file__))
-        checkpoint = os.path.join(dir_path, './aster.pth')
-        file_path = os.path.join(dir_path, "./static/", 'input.txt')
+        print(dir_path)
+        checkpoint = os.path.join(dir_path, 'aster.pth')
+        print(checkpoint)
+        file_path = os.path.join(dir_path, "static", 'input.txt')
+        print(file_path)
 
         is_cuda = torch.cuda.is_available()
         checkpoint = load_checkpoint(checkpoint, cuda=is_cuda)
