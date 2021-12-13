@@ -1,7 +1,7 @@
 # senierProject
 Recognizing the formula.
 
-Welcome to the senierProject wiki!
+Welcome to the senierProject README!
 
 **1. Handwritten Mathematical Expressions Recognition**
      
