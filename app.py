@@ -38,7 +38,6 @@ def upload_file():
         latex_data = inf.getLatext(read_img)[0]
         predict_file = os.path.join(dir_path, PREDICT_FOLDER, file.filename)
         save_latex_img(latex_data, predict_file)
-
     return render_template('predict.html', image_file_name=file.filename, latex_data=latex_data)
 
 
