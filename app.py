@@ -36,7 +36,6 @@ def upload_file():
         read_img = Image.open(file)
         # Latex 문자열로 변환
         latex_data = inf.getLatext(read_img)[0]
-        # Todo : Latex 이미지로 변환
         predict_file = os.path.join(dir_path, PREDICT_FOLDER, file.filename)
         save_latex_img(latex_data, predict_file)
 
