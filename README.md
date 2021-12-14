@@ -74,4 +74,4 @@ Convert the handwritten image into a latex format with the model learned and out
 ***
 ![image](https://user-images.githubusercontent.com/76080523/145774275-e2bbd6d7-3447-41e3-8783-ceb626fe6346.png)
 
-![image](https://user-images.githubusercontent.com/76080523/145787003-b467f80c-ad09-4ac6-a550-a07783516213.png)
+<img width="781" alt="제목 없음33" src="https://user-images.githubusercontent.com/76080523/145952322-ad1fc1ea-66eb-49fb-a984-a3b6e4b87b2e.png">
