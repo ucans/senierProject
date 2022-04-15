@@ -1,4 +1,4 @@
-# senierProject
+# SenierProject
 Recognizing the formula.
 
 Welcome to the senierProject README!
