@@ -16,7 +16,9 @@ It's a rather difficult project, but we did it.
 
 **Requirements**
 *******
-*FLASK APP
+```
+FLASK APP
+```
 
 **BUILDING MODEL**
 *******
