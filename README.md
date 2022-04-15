@@ -14,6 +14,10 @@ It's a rather difficult project, but we did it.
 * Building **training model** and **math recognition model**.
 * Making a **Web Flask application** so user can upload the images and perform recognition.
 
+**Requirements**
+*******
+*FLASK APP
+
 **BUILDING MODEL**
 *******
 
