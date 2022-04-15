@@ -20,7 +20,7 @@ It's a rather difficult project, but we did it.
 FLASK APP
 ```
 
-**BUILDING MODEL**
+**BUILDING MODELS**
 *******
 
 **1. Dataset**
@@ -81,6 +81,24 @@ Convert the handwritten image into a latex format with the model learned and out
 ![image](https://user-images.githubusercontent.com/76080523/145774275-e2bbd6d7-3447-41e3-8783-ceb626fe6346.png)
 
 <img width="781" alt="제목 없음33" src="https://user-images.githubusercontent.com/76080523/145952322-ad1fc1ea-66eb-49fb-a984-a3b6e4b87b2e.png">
+
+**How to run the Flask App locally**
+```
+virtualenv env
+source env/bin/activate
+
+# For window
+set FLASK_APP=app.py
+set FLASK_ENV=development
+export FLASK_DEBUG=1
+flask run
+
+# For Ubuntu
+export FLASK_APP=app.py
+export FLASK_ENV=development
+export FLASK_DEBUG=1
+flask run
+```
 
 **HOW TO RUN WEB SERVER**
 
