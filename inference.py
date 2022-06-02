@@ -1,37 +1,18 @@
 import torch
 import os
-#from train import id_to_string
-#from metrics import word_error_rate, sentence_acc
 from checkpoint import load_checkpoint
 from torchvision import transforms
 from dataset import LoadEvalDataset, collate_eval_batch, START, PAD
 from flags import Flags
-from utils import get_network, get_optimizer
+from loadNetwork import get_network, get_optimizer
 import csv
 from torch.utils.data import DataLoader
 import argparse
 import random
-#from tqdm import tqdm
 from PIL import Image, ImageOps
 
 from networks.Attention import Attention
-# import cv2
 
-# import albumentations as A
-# from albumentations.pytorch import ToTensorV2
-
-# def inference(data):
-#     print("Before:",data)
-#     data = gen_data(data)
-#     print("After:",data)
-    
-    
-#     #TODO
-#     #이곳에서 위에서 생성한 데이터를 기반으로 inference한 값들을 평균을 내서 입력해주시면 되겠습니다.
-#     #probability의 평균
-#     result = 100
-
-#     return result 
 
 
 def id_to_string(tokens, data_loader,do_eval=0):
@@ -334,5 +315,3 @@ if __name__ == "__main__":
     ll = LInference()
     #for test
     print(ll.get_target())
-
-

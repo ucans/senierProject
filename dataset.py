@@ -100,15 +100,7 @@ class LoadDataset(Dataset):
         transform=None,
         rgb=3,
     ):
-        """
-        Args:
-            groundtruth (string): Path to ground truth TXT/TSV file
-            tokens_file (string): Path to tokens TXT file
-            ext (string): Extension of the input files
-            crop (bool, optional): Crop images to their bounding boxes [Default: False]
-            transform (callable, optional): Optional transform to be applied
-                on a sample.
-        """
+
         super(LoadDataset, self).__init__()
         self.crop = crop
         self.transform = transform
@@ -165,15 +157,8 @@ class LoadEvalDataset(Dataset):
         transform=None,
         rgb=3,
     ):
-        """
-        Args:
-            groundtruth (string): Path to ground truth TXT/TSV file
-            tokens_file (string): Path to tokens TXT file
-            ext (string): Extension of the input files
-            crop (bool, optional): Crop images to their bounding boxes [Default: False]
-            transform (callable, optional): Optional transform to be applied
-                on a sample.
-        """
+
+
         super(LoadEvalDataset, self).__init__()
         self.crop = crop
         self.rgb = rgb
@@ -211,7 +196,6 @@ class LoadEvalDataset(Dataset):
 
         if self.crop:
             # Image needs to be inverted because the bounding box cuts off black pixels,
-            # not white ones.
             bounding_box = ImageOps.invert(image).getbbox()
             image = image.crop(bounding_box)
 

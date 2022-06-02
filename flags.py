@@ -1,14 +1,11 @@
-"""
-Original code from clovaai/SATRN
-"""
+
 import os
-#import yaml
+import yaml
 import collections
 
 
 def dict_to_namedtuple(d):
-    """ Convert dictionary to named tuple.
-    """
+    #Convert dictionary to named tuple.
     FLAGSTuple = collections.namedtuple('FLAGS', sorted(d.keys()))
 
     for k, v in d.items():
@@ -31,8 +28,6 @@ def dict_to_namedtuple(d):
 
 
 class Flags:
-    """ Flags object.
-    """
 
     def __init__(self, config_file):
         try:
