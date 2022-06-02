@@ -9,18 +9,18 @@ class TPS_SpatialTransformerNetwork(nn.Module):
     """ Rectification Network of RARE, namely TPS based STN """
 
     def __init__(self, F, I_size, I_r_size, I_channel_num=1):
-
+        #Based on TPS
         super(TPS_SpatialTransformerNetwork, self).__init__()
         self.F = F
         self.I_size = I_size
-        self.I_r_size = I_r_size  # = (I_r_height, I_r_width)
+        self.I_r_size = I_r_size 
         self.I_channel_num = I_channel_num
         self.LocalizationNetwork = LocalizationNetwork(self.F, self.I_channel_num)
         self.GridGenerator = GridGenerator(self.F, self.I_r_size)
 
     def forward(self, batch_I):
         batch_C_prime = self.LocalizationNetwork(batch_I)  # batch_size x K x 2
-        build_P_prime = self.GridGenerator.build_P_prime(batch_C_prime)  # batch_size x n (= I_r_width x I_r_height) x 2
+        build_P_prime = self.GridGenerator.build_P_prime(batch_C_prime)
         build_P_prime_reshape = build_P_prime.reshape([build_P_prime.size(0), self.I_r_size[0], self.I_r_size[1], 2])
         
         if torch.__version__ > "1.2.0":
@@ -32,6 +32,7 @@ class TPS_SpatialTransformerNetwork(nn.Module):
 
 
 class LocalizationNetwork(nn.Module):
+    """ Localization Network of RARE, which predicts C' (K x 2) from I (I_width x I_height) """
 
     def __init__(self, F, I_channel_num):
         super(LocalizationNetwork, self).__init__()
@@ -64,7 +65,6 @@ class LocalizationNetwork(nn.Module):
         self.localization_fc2.bias.data = torch.from_numpy(initial_bias).float().view(-1)
 
     def forward(self, batch_I):
-
         batch_size = batch_I.size(0)
         features = self.conv(batch_I).view(batch_size, -1)
         batch_C_prime = self.localization_fc2(self.localization_fc1(features)).view(batch_size, self.F, 2)
@@ -72,7 +72,7 @@ class LocalizationNetwork(nn.Module):
 
 
 class GridGenerator(nn.Module):
-    #Grid Generator of RARE, which produces P_prime by multipling T with P
+    """ Grid Generator of RARE, which produces P_prime by multipling T with P """
 
     def __init__(self, F, I_r_size):
         """ Generate P_hat and inv_delta_C for later """
@@ -82,13 +82,11 @@ class GridGenerator(nn.Module):
         self.F = F
         self.C = self._build_C(self.F)  # F x 2
         self.P = self._build_P(self.I_r_width, self.I_r_height)
-
         self.register_buffer("inv_delta_C", torch.tensor(self._build_inv_delta_C(self.F, self.C)).float())  # F+3 x F+3
         self.register_buffer("P_hat", torch.tensor(self._build_P_hat(self.F, self.C, self.P)).float())  # n x F+3
 
 
     def _build_C(self, F):
-        #Return coordinates of fiducial points in I_r; C
         ctrl_pts_x = np.linspace(-1.0, 1.0, int(F / 2))
         ctrl_pts_y_top = -1 * np.ones(int(F / 2))
         ctrl_pts_y_bottom = np.ones(int(F / 2))
@@ -98,7 +96,7 @@ class GridGenerator(nn.Module):
         return C  # F x 2
 
     def _build_inv_delta_C(self, F, C):
-        """ Return inv_delta_C which is needed to calculate T """
+        #Return inv_delta_C which is needed to calculate T
         hat_C = np.zeros((F, F), dtype=float)  # F x F
         for i in range(0, F):
             for j in range(i, F):
@@ -107,7 +105,6 @@ class GridGenerator(nn.Module):
                 hat_C[j, i] = r
         np.fill_diagonal(hat_C, 1)
         hat_C = (hat_C ** 2) * np.log(hat_C)
-        # print(C.shape, hat_C.shape)
         delta_C = np.concatenate(  # F+3 x F+3
             [
                 np.concatenate([np.ones((F, 1)), C, hat_C], axis=1),  # F x F+3

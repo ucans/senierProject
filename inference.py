@@ -135,7 +135,7 @@ class LInference():
     def __init__(self):
         dir_path = os.path.dirname(os.path.realpath(__file__))
         print(dir_path)
-        checkpoint = os.path.join(dir_path, 'aster.pth')
+        checkpoint = os.path.join(dir_path, 'model.pth')
         print(checkpoint)
         file_path = os.path.join(dir_path, "static", 'input.txt')
         print(file_path)
@@ -251,7 +251,7 @@ class LInference():
 
 def load_model():
 
-    checkpoint ="./aster.pth"
+    checkpoint ="./model.pth"
     file_path = os.path.join("./static/", 'input.txt')
 
     is_cuda = torch.cuda.is_available()
